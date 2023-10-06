@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(gui_node LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
+# set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -14,7 +14,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt<Qt5> COMPONENTS Widgets)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(scion_types REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -29,7 +28,7 @@ add_library(gui_node SHARED
   include/mainwindow.hpp
   include/mission_planning.hpp
   include/launch_edit.hpp
-  src/mainwindow.ui
+  ui/mainwindow.ui
 )
 
 target_link_libraries(gui_node 
@@ -47,15 +46,15 @@ add_executable(gui_exec
   include/pid_controller.hpp
   include/mission_planning.hpp
   include/launch_edit.hpp
-  src/mainwindow.ui
-  src/mission_planning.ui
-  src/pid_controller.ui
-  src/launch_edit.ui
+  ui/mainwindow.ui
+  ui/mission_planning.ui
+  ui/pid_controller.ui
+  ui/launch_edit.ui
+  ${UI_HEADERS}
 )
 
 target_include_directories(
-  gui_exec PUBLIC 
-  include
+  gui_exec PUBLIC include
 )
 
 ament_target_dependencies(gui_node PUBLIC rclcpp scion_types std_msgs)
@@ -72,8 +71,5 @@ install(TARGETS gui_exec
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-ament_package()
-
 
 

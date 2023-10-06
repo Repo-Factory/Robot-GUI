@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
     QApplication a(argc, argv);
-    QFile styleFile("/home/robox/gui/server/gui_node/Darkeum.qss");
+    QFile styleFile("/home/robox/gui/server/gui_node/styles/Darkeum.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());
     a.setStyleSheet(style);
