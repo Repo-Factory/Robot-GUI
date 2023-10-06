@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 3.5)
 
 project(gui_node LANGUAGES CXX)
 
-# set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_definitions(-DSTYLE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/styles/Darkeum.qss")
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt<Qt5> COMPONENTS Widgets)
@@ -26,7 +27,7 @@ set(UI_FILES
 
 QT5_WRAP_UI(UI_HEADERS ${UI_FILES})
 
-add_library(gui_node SHARED
+add_library(gui_node STATIC
   src/mainwindow.cpp
   src/mission_planning.cpp
   src/pid_controller.cpp
@@ -69,7 +70,5 @@ install(TARGETS gui_exec
     DESTINATION lib/${PROJECT_NAME}
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    RUNTIME DESTINATION /usr/local/bin/robot
 )
-
-
