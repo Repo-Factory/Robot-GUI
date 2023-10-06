@@ -5,7 +5,7 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include <QString>
-#include "scion_types/msg/json_string.hpp"
+// #include "scion_types/msg/json_string.hpp"
 #include <QFileDialog>
 #include <QTextStream>
 #include <QGroupBox>
@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     this->json_string = rclcpp::Node::make_shared("json_gui_nodes");
-    this->json_string_publisher = json_string->create_publisher<scion_types::msg::JsonString>("gui_data", 10);
+    // this->json_string_publisher = json_string->create_publisher<scion_types::msg::JsonString>("gui_data", 10);
 
     connect(ui->launch_nodes,QOverload<int>::of(&QComboBox::activated), this, &MainWindow::launch_nodes_selected);
 
@@ -90,11 +90,11 @@ void MainWindow::update_json_nodes(bool checked, QCheckBox* node){
 
 void MainWindow::on_start_nodes_clicked()
 {
-    //publish json string for main nodes
-    auto message = scion_types::msg::JsonString();
-    message.main_nodes = this->main_nodes_string.dump(4);
-    message.launch_nodes = this->launch_nodes_string.dump(4);
-    this->json_string_publisher->publish(message);
+    // //publish json string for main nodes
+    // auto message = scion_types::msg::JsonString();
+    // message.main_nodes = this->main_nodes_string.dump(4);
+    // message.launch_nodes = this->launch_nodes_string.dump(4);
+    // this->json_string_publisher->publish(message);
 
 }
 

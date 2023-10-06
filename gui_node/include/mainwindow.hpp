@@ -9,7 +9,7 @@
 #include <nlohmann/json.hpp>
 #include <vector>
 #include <string>
-#include "scion_types/msg/json_string.hpp"
+// #include "scion_types/msg/json_string.hpp"
 #include <QCheckBox> 
 
 QT_BEGIN_NAMESPACE
@@ -69,7 +69,7 @@ private:
     QString launchFileName = "";
 
     rclcpp::Node::SharedPtr json_string;
-    rclcpp::Publisher<scion_types::msg::JsonString>::SharedPtr json_string_publisher;
+    // rclcpp::Publisher<scion_types::msg::JsonString>::SharedPtr json_string_publisher;
 
 };
 #endif // MAINWINDOW_H    
