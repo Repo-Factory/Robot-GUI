@@ -16,6 +16,10 @@ to talk to it. The GUI will do this primarily by passing JSON strings between th
 ## Getting Started
 
 The GUI Package has many dependencies which will be the hardest part about using it.
+If you don't have QT on your machine, use these commands to get started 
+
+    sudo apt-get install qt5-default
+    sudo apt-get install qtcreator
 
 ### Dependencies
 
