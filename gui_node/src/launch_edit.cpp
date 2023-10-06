@@ -37,7 +37,7 @@ void LaunchEdit::printLaunchFile(){
     }
 
     pythonFile.close();
-    // ui->launch_description->setPlainText(QString::fromStdString(this->launchFileString));
+    ui->launch_description->setPlainText(QString::fromStdString(this->launchFileString));
 
 }
 
@@ -60,7 +60,6 @@ void LaunchEdit::updateLaunchFile(const nlohmann::json& jsonArray){
 
 
 }
-
 
 void LaunchEdit::on_saveLaunchDescription_clicked()
 {
@@ -118,8 +117,6 @@ std::string LaunchEdit::addNodeString(const LaunchParameters& node)
 
 }
 
-
-
 std::string LaunchEdit::getLaunchParamsVecAsString() {
 
     std::string nodeList = "";
@@ -132,7 +129,6 @@ std::string LaunchEdit::getLaunchParamsVecAsString() {
 
     return nodeList;
 }
-
 
 std::string LaunchEdit::createLaunchNodes(const nlohmann::json& nodesArray){
     std::string launchFileString = "\n";

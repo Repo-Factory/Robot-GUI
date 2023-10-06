@@ -4,7 +4,7 @@ User Interface to interact with Club Robot
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+GUI will have various pages for controlling the robot. 
 
 ## Directories ##
 
@@ -22,7 +22,8 @@ An in-depth paragraph about your project and overview of use.
 
 ### Dependencies
 
-*
+* Must link to core_dependencies library for types
+* Must have Qt headers installed and linked correctly in the CMakeLists.txt
 
 ### Install/Linking
 
@@ -31,6 +32,7 @@ An in-depth paragraph about your project and overview of use.
 ### Executing program
 
 
+
 ## Authors
 
-[@Slix Elixel](https://github.com/Repo-Factory/) Github
+[@Strix Elixel](https://github.com/Repo-Factory/) Github

@@ -9,7 +9,6 @@
 #include <memory> 
 #include <QKeyEvent>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QDoubleValidator>
 
 PIDController::PIDController(QWidget *parent) :

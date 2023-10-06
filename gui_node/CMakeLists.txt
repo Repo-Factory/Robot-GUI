@@ -12,32 +12,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt<Qt5> COMPONENTS Widgets)
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(rclcpp REQUIRED)
 find_package(scion_types REQUIRED)
 find_package(std_msgs REQUIRED)
 find_library(CORE_DEPENDENCIES core_dependencies)
 
-include_directories(include)
-include_directories(${Qt5Widgets_INCLUDE_DIRS})
+set(UI_FILES
+    ui/mainwindow.ui
+    ui/mission_planning.ui
+    ui/pid_controller.ui
+    ui/launch_edit.ui
+)
+
+QT5_WRAP_UI(UI_HEADERS ${UI_FILES})
 
 add_library(gui_node SHARED
-  src/main.cpp
-  src/mainwindow.cpp
-  include/mainwindow.hpp
-  include/mission_planning.hpp
-  include/launch_edit.hpp
-  ui/mainwindow.ui
-)
-
-target_link_libraries(gui_node 
-    PRIVATE Qt5::Widgets
-    ${CORE_DEPENDENCIES}  
-)
-
-add_executable(gui_exec
-  src/main.cpp
   src/mainwindow.cpp
   src/mission_planning.cpp
   src/pid_controller.cpp
@@ -46,11 +35,21 @@ add_executable(gui_exec
   include/pid_controller.hpp
   include/mission_planning.hpp
   include/launch_edit.hpp
-  ui/mainwindow.ui
-  ui/mission_planning.ui
-  ui/pid_controller.ui
-  ui/launch_edit.ui
   ${UI_HEADERS}
+)
+
+target_include_directories(gui_node PUBLIC
+    ${Qt5Widgets_INCLUDE_DIRS}
+    include
+)
+
+target_link_libraries(gui_node 
+    PRIVATE Qt5::Widgets
+    ${CORE_DEPENDENCIES}  
+)
+
+add_executable(gui_exec
+  main/main.cpp
 )
 
 target_include_directories(
@@ -62,6 +61,7 @@ ament_target_dependencies(gui_exec PUBLIC rclcpp scion_types std_msgs)
 
 target_link_libraries(gui_exec 
     PRIVATE Qt5::Widgets
+    gui_node
     ${CORE_DEPENDENCIES}  
 )
 
